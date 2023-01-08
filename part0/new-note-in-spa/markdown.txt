@@ -1,0 +1,25 @@
+title New note in Single page app diagram
+
+note over Browser:
+when the form is submitted the event handler:
+1. prevents the default form submit behaviour
+2. creates new note object containing the input value and date
+3. pushes the note object to notes array
+4. clears the input value
+5. rerenders the note list
+6. sends the new note to the server as JSON
+end note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over Server:
+server uses the content-type header
+of the request to parse the data
+end note
+
+Server-->Browser: HTTP status 201
+
+note over Browser:
+this time the response doesn't ask for a redirect
+and the browser doesn't reload the page
+end note
