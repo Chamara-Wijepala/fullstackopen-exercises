@@ -1,0 +1,28 @@
+title New note diagram
+
+note over Browser:
+form submit event sends input data to server
+using it's action and method attributes
+end note
+
+Browser->Server: HTTP POST containing form data to https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over Server: 
+server pushes new note object to notes array containing
+the request's body and the date it was created
+end note
+
+Server->Browser: HTTP status 302: URL redirect to /exampleapp/notes
+
+note over Browser:
+browser uses response header's location to do a
+new GET request. Essentially reloading the page
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML code
+
+note over Browser:
+browser receives the main HTML code and renders
+the page again
+end note
