@@ -1,0 +1,21 @@
+title Single page app diagram
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser: HTML code
+
+note over Browser:
+The HTML is almost the exact same as the previous one,
+except the form doesn't have the action or method attributes
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server-->Browser: spa.js
+
+note over Browser: browser runs code that requests JSON data from the server
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: [{"content":"gog3d","date":"2023-01-07T19:45:11.511Z"}, ...]
+
+note over Browser: browser runs the event handler that renders the notes to page
