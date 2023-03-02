@@ -52,7 +52,8 @@ export default function App() {
           );
           displaySuccessMessage(`Updated ${personToUpdate.name}`);
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error);
           setPersons(
             persons.filter((person) => person.id !== personToUpdate.id)
           );
@@ -69,9 +70,12 @@ export default function App() {
           name: newName,
           number: newNumber,
         })
-        .then((newPerson) => setPersons([...persons, newPerson]));
+        .then((newPerson) => {
+          setPersons([...persons, newPerson]);
+          displaySuccessMessage(`Added ${newName}`);
+        })
+        .catch((error) => displayErrorMessage(error.response.data.error));
 
-      displaySuccessMessage(`Added ${newName}`);
       setNewName("");
     }
   };
@@ -80,7 +84,7 @@ export default function App() {
     if (!window.confirm(`Delete ${name} ?`)) return;
 
     personsService.remove(id).then((status) => {
-      if (status === 200) {
+      if (status === 204) {
         setPersons(persons.filter((person) => person.id !== id));
         displaySuccessMessage(`Deleted ${name}`);
       }
